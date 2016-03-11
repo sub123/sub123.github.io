@@ -24,24 +24,50 @@
 				<!-- One -->
 					<section id="one">
 						<header class="major">
-							<h2>Text to Speech<br /></h2>
+							<h1>Text to Speech<br /></h1>
 						</header>
-						<p>A brief introduction to speech synthesis in Ubuntu and Python.</p>
-						<ul class="actions">
-							<li><a href="#" class="button">Read More</a></li>
-						</ul>
+						<p>
+						Speech synthesis has always been an interesting field having a wide spread application limited only by one’s imagination. One of the many applications can be an Optical character recognition application that reads out the text from a given photograph. Another from the list can be a pdf reader about which i will be writing in my next post.<br/>
+						Text to speech can be seen in applications like Siri, Cortana, Google Now and all other virtual assistants( I did find Mycroft AI to be really fascinating, and its open source :) ) <br/>
+						There are many ways to convert text to speech such as the Google TTS API, one of the best text to speech conversion tool that I tried. But it open only for developers, i.e you need a key from developer console and also Google regularly changes its URL and hence any application built around it often tend to collapse.<br/>
+						Here I will be writing about standalone applications and hence about espeak( Linux) and pyttsx(platform independent).<br/>
+						<h3>ESPEAK:</h3>
+						espeak is a cli application for Linux distros that can used to convert text to speech.
+						<h4>Installation:</h4>
+						<code>sudo apt-get install espeak</code><br/>
+						<h4>Usage:</h4>
+						<code>espeak “hello world”</code><br/>
+						It's as simple as that :) <br/>
+						espeak can also be used to used to save the spoken text in mp3 or other formats.<br/>
+						Try:
+						<code>espeak -h</code> for more options.<br/>
+						<h3>PYTTSX:</h3>
+						pyttsx is a python speech synthesizer module. It is platform independent and a lot similar to espeak in terms of accuracy.
+						<h4>Installation:</h4>
+						<code>sudo pip install pyttsx</code><br/>
+						<h4>Usage:</h4>
+						<pre>
+							<code>import pyttsx
+content=raw_input(“Enter text to speak:”)
+engine = pyttsx.init()
+engine.say(content)
+engine.runAndWait()
+							</code>
+						</pre>
+						Both espeak and pyttsx are not even close to Google TTS but can be used to make standalone applications.
+						</p>
 					</section>
 				<!-- Two -->
 					<section id="two">
 						<h2>Recent Posts</h2>
 						<div class="row">
 							<article class="6u 12u$(xsmall)">
-								<a href="#" class="image fit thumb"><img src="../../images/thumbs/01.jpg" alt="" style="height:217px;"/></a>
+								<a href="text-to-speech.html" class="image fit thumb"><img src="../../images/thumbs/01.jpg" alt="" style="height:217px;"/></a>
 								<h3>Text to Speech</h3>
 								<p>A brief introduction to speech synthesis in Ubuntu and Python.</p>
 							</article>
 							<article class="6u$ 12u$(xsmall)">
-								<a href="#" class="image fit thumb"><img src="../../images/thumbs/02.jpg" alt="" style="height:217px;"/></a>
+								<a href="anagram.html" class="image fit thumb"><img src="../../images/thumbs/02.jpg" alt="" style="height:217px;"/></a>
 								<h3>A Game of Anagrams</h3>
 								<p>A Game written in Python which presents user with an anagram and they have to 
 							guess the right word within a fixed number of attempts.</p>
@@ -120,6 +146,7 @@
 					<li><a href="https://twitter.com/sbhm94" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
 					<li><a href="https://github.com/sub123" class="icon fa-github"><span class="label">Github</span></a></li>
 					<li><a href="https://www.facebook.com/sbhm94" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+					<li><a href="mailto:sbhm94@gmail.com" class="icon fa-envelope-o"><span class="label">Mail</span></a></li>
 				</ul>
 				<ul class="copyright">
 					<li>&copy; sub123</li>
