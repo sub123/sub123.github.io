@@ -24,38 +24,47 @@
 				<!-- One -->
 					<section id="one">
 						<header class="major">
-							<h1>Text to Speech<br /></h1>
+							<h1>PDF to Speech<br /></h1>
 						</header>
 						<p>
-						Speech synthesis has always been an interesting field having a wide spread application limited only by one’s imagination. One of the many applications can be an Optical character recognition application that reads out the text from a given photograph. Another from the list can be a pdf reader about which i will be writing in my next post.<br/>
-						Text to speech can be seen in applications like Siri, Cortana, Google Now and all other virtual assistants( I did find Mycroft AI to be really fascinating, and its open source :) ) <br/>
-						There are many ways to convert text to speech such as the Google TTS API, one of the best text to speech conversion tool that I tried. But it open only for developers, i.e you need a key from developer console and also Google regularly changes its URL and hence any application built around it often tend to collapse.<br/>
-						Here I will be writing about standalone applications and hence about espeak( Linux) and pyttsx(platform independent).<br/>
-						<h3>ESPEAK:</h3>
-						espeak is a cli application for Linux distros that can used to convert text to speech.
-						<h4>Installation:</h4>
-						<code>sudo apt-get install espeak</code><br/>
-						<h4>Usage:</h4>
-						<code>espeak “hello world”</code><br/>
-						It's as simple as that :) <br/>
-						espeak can also be used to used to save the spoken text in mp3 or other formats.<br/>
-						Try:
-						<code>espeak -h</code> for more options.<br/>
-						<h3>PYTTSX:</h3>
-						pyttsx is a python speech synthesizer module. It is platform independent and a lot similar to espeak in terms of accuracy.
-						<h4>Installation:</h4>
-						<code>sudo pip install pyttsx</code><br/>
-						<h4>Usage:</h4>
-						<pre>
-							<code>import pyttsx
-content=raw_input(“Enter text to speak:”)
-engine = pyttsx.init()
-engine.say(content)
+							My this post is a continuation of my previous post regarding speech synthesis from text.
+							You can read it  <a href="text-to-speech.html">here</a>. <br/><br/>
+							For parsing PDF's I will be using slate and PDFminer. You can install them by running:<br/>
+							<code>sudo pip install --upgrade --ignore-installed slate==0.3 pdfminer==20110515</code><br/>
+							Here version numbers are important as Slate is built on top of PDFminer and for their proper
+							interaction it is important that they are compatible.<br/><br/>
+							I will be using pyttsx for speech synthesis and espeak to save the spoken text in mp3 format.<br/><br/>
+							First we need to parse the PDF. This is done as
+							<pre>
+								<code>loc=raw_input('Enter location of pdf:')
+with open(loc) as f:
+	doc=slate.PDF(f)
+								</code>
+							</pre>
+							To save the spoken text in mp3, we can follow the following procedure
+							<pre>
+								<code>page=input('Enter number of to save in 1 file(0 for all):')
+while i< len(doc):
+	t=""
+	for j in range(i,i+page):
+		if i+j>=len(doc):
+			break
+		t=t+doc[j-1]
+	name=(str)(i)+" to "+(str)(i+page)
+	i=i+page
+	subprocess.call(["espeak", "-w"+name+".mp3", t])
+								</code>
+							</pre>
+							To speak out a specific page we can do
+							<pre>
+								<code>page=input("Enter page number to speak:")
+t=doc[page-1]
+engine=pyttsx.init()
+engine.say(doc[page-1])
 engine.runAndWait()
-							</code>
-						</pre>
-						Both espeak and pyttsx are not even close to Google TTS but can be used to make standalone applications.<br/>
-						Read more  <a href="pdf-to-speech.html">here</a>.
+								</code>
+							</pre>
+							A full, working code can be on  <a href="https://github.com/sub123/pdf2speech">Github</a> 
 						</p>
 					</section>
 				<!-- Two -->
