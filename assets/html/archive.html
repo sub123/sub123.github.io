@@ -20,91 +20,14 @@
 
 		<!-- Main -->
 			<div id="main">
-
-				<!-- One -->
-					<section id="one">
-						<header class="major">
-							<h1>A Game of Anagrams<br /></h1>
-						</header>
-						<p>
-							This article is about a python game which presents players with an anagram
-							and the player has guess the right word within a fixed number of attempts.
-							The number of attempts allowed depends on the length of the word. After each incorrect 
-							attempt, user is provided with a hint to the actual word. In case the player is unable to 
-							get the right word within the number of allowed attempts, the correct word is displayed
-							and the game continues.<br/><br/>
-							The code discussed here is written on a Linux Mint 17.1 system using Python 2.7 as the scripting
-							language.<br/><br/>
-							In almost all the Linux based systems there is a file located at directory location “/usr/share/dict/” under different names like “cracklib-small”(Ubuntu based systems),”words”(Redhat,Arch) which contains words from dictionary and are often used by many applications to implement features such as “spell-check”.<br/><br/>
-							We just need to parse that file. This can be done as
-							<pre>
-								<code>loc=’/usr/share/dict/cracklib-small’
-with open(loc) as f:
-	content=f.read().split(‘\n’)
-f.close()
-								</code>
-							</pre>
-							The file also words like zoo's, 2nd, 3rd which we do not want in our game. Also 
-							to avoid making the game too easy I am skipping all the words with length less than 5.
-							All this is done as follows.
-							<pre>
-								<code>l=len(content)
-words=[]
-for i in range(0,l):
-	if ‘\” in content[i] or len(content[i])< 5:
-		continue
-	words.append(content[i])
-								</code>
-							</pre>
-							Finally “words” contain all the words we need for the game to proceed.We can choose a specific word for a particular round of the game by:<code>word=words[random.randint(0,d)]</code>
-							A word would be randomly choosen from the list of words created. To create an anagram of
-							the word we need to shuffle its characters. This is done by:
-							<pre>
-								<code>shuffle=list(word)
-random.shuffle(shuffle)
-								</code>
-							</pre>
-							Now we need to set the number of tries. As this depends on the length of the word it can be 
-							done using a simple if-else statement.<br/>
-							During each user attempt we take their input and compare it with the correct word. If they match we congratulate the user and present the next anagram else we provide them with a hint.
-							<br/>
-							To generate hint for a particular word we choose 2 random integers between 0 and length of the word and display the correct characters at those positions.
-							<pre>
-								<code>t1=random.randint(0,len(word))
-t2=random.randint(0,len(word))
-hint=””
-for i in range(0,len(word)):
-	if i==t1 or i==t2:
-	 	hint=hint+word[i]
-	else:
-		hint=hint+”.”
-print hint
-								</code>
-							</pre>
-							If number of tries equals number of chances we display the correct word and the game 
-							continues with a new word.
-							<pre>
-								<code>if tries==chances:
-	print “The answer was “+word
-								</code>
-							</pre>
-							<b>Special note:</b><br/>
-							To make the code as distribution independent as possible we can choose the location of the file dynamically using the platform module of python.
-							<pre>
-								<code>os=platform.dist()[O]
-if os==’LinuxMint’ or os==’Ubuntu’:
-	loc=’/usr/share/dict/cracklib-small’
-else:
-	loc=’/usr/share/dict/words’
-								</code>
-							</pre>
-							A full,working code for this artice can be found on  <a href="https://github.com/sub123/python-scripts/blob/master/anagramwa.py">Github.</a>
-						</p>
-					</section>
-				<!-- Two -->
 					<section id="two">
-						<h2>Recent Posts</h2>
+						<h1>Archive</h1><hr/>
 						<div class="row">
+							<article class="6u$ 12u$(xsmall)">
+								<a href="ls-a.html" class="image fit thumb"><img src="../../images/thumbs/ls-a.jpg" alt="" style="height:217px;"/></a>
+								<h3>ls -a implementation</h3>
+								<p>A simple implementation of bash command ls -a.</p>
+							</article>
 							<article class="6u 12u$(xsmall)">
 								<a href="text-to-speech.html" class="image fit thumb"><img src="../../images/thumbs/texttospeech.jpg" alt="" style="height:217px;"/></a>
 								<h3>Text to Speech</h3>
@@ -115,10 +38,13 @@ else:
 								<h3>PDF to Speech</h3>
 								<p>A simple python script to read out text from a PDF.</p>
 							</article>
+							<article class="6u$ 12u$(xsmall)">
+								<a href="anagram.html" class="image fit thumb"><img src="../../images/thumbs/anagram.jpg" alt="" style="height:217px;"/></a>
+								<h3>A Game of Anagrams</h3>
+								<p>A Game written in Python which presents user with an anagram and they have to 
+							guess the right word within a fixed number of attempts.</p>
+							</article>
 						</div>
-						<ul class="actions">
-							<li><a href="archive.html" class="button">Archive</a></li>
-						</ul>
 					</section>
 
 				<!-- Three -->
