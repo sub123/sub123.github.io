@@ -34,7 +34,7 @@
 							First we will include all the header files required, "iostream", "dirent.h" and "sys/stat.h". You can read about these header files and different functions implemented in them  <a href="http://pubs.opengroup.org/onlinepubs/007908775/xsh/dirent.h.html">here</a><br/><br/>
 							First we need to declare a temporary variable of type dirent which we shall use to loop through
 							all the directory contents. Then we need to declare a variable of data type DIR to store
-							the directory contents. We can dynamically get directory path but here I defining it.
+							the directory contents. We can dynamically get directory path but here I am defining it.
 							<pre>
 								<code>DIR *dir;
 struct dirent *file;
@@ -53,7 +53,7 @@ dir=opendir("/home/bootstrap");
 closedir(dir);
 								</code>
 							</pre>
-							We can use stat to obtain other informations regarding the file such as permissions,size,
+							We can use stat to obtain other informations regarding the file such as permissions, size, 
 							timestamp etc. I will be writing about them sometime later. Complie the file using
 							<code>g++ ls-a.cpp -o ls-a.out</code>
 							This will create an executable named ls-a.out. To run executable type <code>./ls-a.out</code>. 
